@@ -42,12 +42,14 @@ public class MainActivity extends AppCompatActivity {
               });
           }
           int finalDownloadProgress = downloadProgress;
-          runOnUiThread(new Runnable() {
-              @Override
-              public void run() {
-                  DownloadProgress.setText("Download Progress: " + finalDownloadProgress + "%");
-              }
-          });
+          if(!stopThread) {
+              runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                      DownloadProgress.setText("Download Progress: " + finalDownloadProgress + "%");
+                  }
+              });
+          }
             try{
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
